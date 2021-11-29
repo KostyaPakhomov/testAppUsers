@@ -1,0 +1,34 @@
+$aliceblueColor: #f0f8ff;
+
+.wrapper{
+  height: 100vh;
+  .list{
+    display: flex;
+    flex-direction: column;
+    background-color: $aliceblueColor;
+    height: inherit;
+    ul{
+      width: 100%;
+      background-color: white;
+      .nav-link.active{
+        background-color: $aliceblueColor;
+        border-color: #dee2e6 #dee2e6 $aliceblueColor;
+      }
+      .nav-item:first-child{
+        display: none;
+      }
+    }
+  }
+  .wait{
+    display: flex;
+    height: inherit;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,.1);
+    .mat-spinner {
+      ::ng-deep circle {
+        stroke: #1e90ff;
+      }
+    }
+  }
+}

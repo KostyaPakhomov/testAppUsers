@@ -1,0 +1,19 @@
+<div class="wrapper" [ngSwitch]="displayBlock">
+  <div class="list" *ngSwitchCase="'list'">
+    <ul ngbNav class="nav-tabs">
+      <li [ngbNavItem]="i" *ngFor="let type of types; let i = index">
+        <a ngbNavLink [routerLink]="['navigator']" [queryParams]="{'tab': i, 'type': type}">{{type}}</a>
+      </li>
+    </ul>
+    <router-outlet></router-outlet>
+  </div>
+  <div class="wait" *ngSwitchCase="'wait'">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngSwitchCase="'errorInfo'">
+    <p>{{errorText}}</p>
+    <button (click)="reload()">Обновить</button>
+  </div>
+
+</div>
+

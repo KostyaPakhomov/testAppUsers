@@ -3,16 +3,31 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ListPageComponent } from './list-page/list-page.component';
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {HttpService} from "./services/http.service";
+import {NgbModule, NgbNavModule} from "@ng-bootstrap/ng-bootstrap";
+import { NavigatorComponent } from './navigator/navigator.component';
+import {PeopleService} from "./services/people.service";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListPageComponent,
+    NavigatorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    NgbNavModule,
+    NgbModule,
+    MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [HttpService, PeopleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
