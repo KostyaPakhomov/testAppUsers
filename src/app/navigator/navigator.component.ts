@@ -14,35 +14,25 @@ export class NavigatorComponent implements OnInit, OnDestroy {
   type!: string
   peopleSubscription!: Subscription;
   people: PeopleModel[] = [];
-  displayBlock = 'people';
-  errorText = '';
   constructor(
     private route: ActivatedRoute,
     private peopleService: PeopleService
   ) { }
 
   ngOnInit(): void {
-    this.peopleSubscription = this.peopleService.peopleSubj.subscribe((data: PeopleModel[]) => {
-      this.people = data;
-    }, error => {
-      this.errorText = 'Произошла ошибка. Обновите сессию';
-      this.displayBlock = 'errorInfo';
-    })
     this.querySubscription = this.route.queryParams.subscribe(
       (queryParam: any) => {
-        this.type = queryParam['type'];
-      }, error => {
-        this.errorText = 'Произошла ошибка. Обновите сессию';
-        this.displayBlock = 'errorInfo';
+        if (queryParam['type'] !== undefined){
+          this.type = queryParam['type'];
+          this.peopleService.getPeopleList();
+        }
       });
+    this.peopleSubscription = this.peopleService.peopleSubj.subscribe((data: PeopleModel[]) => {
+      this.people = data;
+    })
   }
   ngOnDestroy() {
     this.peopleSubscription.unsubscribe();
     this.querySubscription.unsubscribe();
   }
-
-  reload(){
-    this.peopleService.getPeopleList();
-  }
-
 }

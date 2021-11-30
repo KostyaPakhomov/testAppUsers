@@ -11,12 +11,14 @@ import {NgbModule, NgbNavModule} from "@ng-bootstrap/ng-bootstrap";
 import { NavigatorComponent } from './navigator/navigator.component';
 import {PeopleService} from "./services/people.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { ErrorScreenComponent } from './shared/error-screen/error-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListPageComponent,
-    NavigatorComponent
+    NavigatorComponent,
+    ErrorScreenComponent
   ],
   imports: [
     BrowserModule,

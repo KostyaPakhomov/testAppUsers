@@ -1,17 +1,11 @@
-<div class="container" [ngSwitch]="displayBlock">
-  <div class="people" *ngSwitchCase="'people'">
-    <table *ngIf="type; else chooseType">
-      <tr><th>Name</th><th>Email</th></tr>
-      <tr *ngFor="let person of people">
-        <td *ngIf="type === person.type">{{person.name.first}}</td><td *ngIf="type === person.type">{{person.email}}</td>
-      </tr>
-    </table>
-    <ng-template #chooseType>
-      <p id="chooseType">Выберите вкладку</p>
-    </ng-template>
-  </div>
-  <div *ngSwitchCase="'errorInfo'">
-    {{errorText}}
-    <button (click)="reload()">Обновить</button>
-  </div>
+<div class="people">
+  <table *ngIf="people.length !== 0; else chooseType">
+    <tr><th>Name</th><th>Email</th></tr>
+    <tr *ngFor="let person of people">
+      <td *ngIf="type === person.type">{{person.name.first}}</td><td *ngIf="type === person.type">{{person.email}}</td>
+    </tr>
+  </table>
+  <ng-template #chooseType>
+    <p id="chooseType">Выберите вкладку</p>
+  </ng-template>
 </div>
